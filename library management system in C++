@@ -1,0 +1,222 @@
+	
+
+//PROJECT:Student Record Management System using C++
+#include<iostream>
+using namespace std;
+string Enrollment_no[10],NameOfStudent[15],Department[20],course[30],mobile_no[10],admission_year[10];
+//arrays for storing students data.
+int total=0; //to store all data
+void enter()
+{
+int ch=0;
+cout<<"Could you provide us number of student you want to enter"<<endl;
+cin>>ch;
+if(total==0)
+{
+total=ch+total;
+for(int i=0;i<ch;i++)
+{
+cout<<"\nEnter the Data of student "<<i+1<<endl<<endl;
+cout<<"Enter Enrolmenlt No."<<endl;
+cin>>Enrollment_no[i];
+  bool nameIsValid = true;
+cout<<"Enter NameOfStudent: "<<endl;
+cin>>NameOfStudent[i];
+
+       for (int j = 0; j < NameOfStudent[i].length(); j++) {
+        if (isdigit(NameOfStudent[i][j])) {
+            cout << "Please enter a real name, not a username." << endl;
+            // Set flag to false
+            nameIsValid = false;
+            break;
+        }
+    }
+
+    // Only accept the name if the flag is true
+    if (!nameIsValid) {
+        // Reset the name to an empty string
+        NameOfStudent[i] = "";
+        // Prompt the user to enter the name again
+        cout << "Enter NameOfStudent: " << endl;
+        cin >> NameOfStudent[i];
+    }
+
+cout<<"Enter Department: "<<endl;
+cin>>Department[i];
+cout<<"Enter Course: "<<endl;
+cin>>course[i];
+cout<<"Enter Mobile NO: "<<endl;
+cin>>mobile_no[i];
+cout<<"Enter Admission Year: "<<endl;
+cin>>admission_year[i];
+}
+}
+else
+{
+for(int i=total;i<ch+total;i++)
+//to store onward students data rather than storing double data()
+{
+cout<<"\nEnter the Data of student "<<i+1<<endl<<endl;
+cout<<"Enter Enrolmenlt No. ";
+cin>>Enrollment_no[i];
+cout<<"Enter NameOfStudent: ";
+cin>>NameOfStudent[i];
+cout<<"Enter Department: ";
+cin>>Department[i];
+cout<<"Enter Course: ";
+cin>>course[i];
+cout<<"Enter Mobile NO: ";
+cin>>mobile_no[i];
+cout<<"Enter Admission Year: ";
+cin>>admission_year[i];
+}
+total=ch+total; //making choice
+}
+}
+void show()
+{
+if(total==0)
+{
+cout<<"INVELID DATA"<<endl;
+}
+else
+{
+for(int i=0;i<total;i++)
+{
+cout<<"\nData of Student "<<i+1<<endl<<endl;
+cout<<"Enrollment No. "<<Enrollment_no[i]<<endl;
+cout<<"NameOfStudent "<<NameOfStudent[i]<<endl;
+cout<<"Department "<<Department[i]<<endl;
+cout<<"Course "<<course[i]<<endl;
+cout<<"Mobile NO "<<mobile_no[i]<<endl;
+cout<<"Admission Year "<<admission_year[i]<<endl;
+}
+}
+}
+void search()
+{
+if(total==0)
+{
+cout<<"No data is entered"<<endl;
+}
+else
+{
+string rollno;
+cout<<"Enter the roll no of student"<<endl;
+cin>>rollno;
+for(int i=0;i<total;i++)
+{
+if(rollno==Enrollment_no[i])
+{
+cout<<"Roll NO "<<Enrollment_no[i]<<endl;
+cout<<"NameOfStudent "<<NameOfStudent[i]<<endl;
+cout<<"Department "<<Department[i]<<endl;
+cout<<"Course "<<course[i]<<endl;
+cout<<"Mobile NO "<<mobile_no[i]<<endl;
+cout<<"Admission Year "<<admission_year[i]<<endl;
+}
+}
+}
+}
+void update()
+{
+if(total==0)
+{
+cout<<"No data is entered"<<endl;
+}
+else{
+string rollno;
+cout<<"Enter the roll no of student which you want to update"<<endl;
+cin>>rollno;
+for(int i=0;i<total;i++)
+{
+if(rollno==Enrollment_no[i])
+{
+cout<<"\nPrevious data"<<endl<<endl;
+cout<<"Data of Student "<<i+1<<endl;
+cout<<"Roll NO: "<<Enrollment_no[i]<<endl;
+cout<<"NameOfStudent "<<NameOfStudent[i]<<endl;
+cout<<"Department "<<Department[i]<<endl;
+cout<<"Course "<<course[i]<<endl;
+cout<<"Mobile NO "<<mobile_no[i]<<endl;
+cout<<"Admission Year "<<admission_year[i]<<endl;
+cout<<"\nEnter new data"<<endl<<endl;
+cout<<"Enter Roll NO ";
+cin>>Enrollment_no[i];
+cout<<"Enter NameOfStudent: ";
+cin>>NameOfStudent[i];
+cout<<"Enter Department: ";
+cin>>Department[i];
+cout<<"Enter Course: ";
+cin>>course[i];
+cout<<"Enter Mobile NO: ";
+cin>>mobile_no[i];
+cout<<"Enter Admission Year: ";
+cin>>admission_year[i];
+}
+}
+}
+}
+void Delete()
+{
+if(total==0)
+{
+cout<<"No data is entered yet"<<endl;
+}
+else
+{
+int a;
+cout<<"Are you Sure to Delete Data?"<<endl;
+cout<<"Press 1 to delete all record"<<endl;
+cin>>a;
+if(a==1)
+{
+total=0;
+cout<<"All record is deleted..!!"<<endl;
+}
+else
+{
+cout<<"Please Press 1 to Delete All Record"<<endl;
+}
+}
+}
+int main() //main function, execution of program starts from here
+{
+int value;
+while(true) //always in Loop
+{
+    cout<<"++++++++++++++++++++++++++++++"<<endl;
+cout<<"\nPress 1 to Enter data"<<endl<<endl;
+cout<<"Press 2 to Show data"<<endl<<endl;
+cout<<"Press 3 to Search data"<<endl<<endl;
+cout<<"Press 4 to Update data"<<endl<<endl;
+cout<<"Press 5 to Delete data"<<endl<<endl;
+cout<<"Press 6 to Quit"<<endl<<endl;
+cout<<" Enter number --> ";cin>>value;
+cout<<"++++++++++++++++++++++++++++++++++"<<endl;
+switch(value)
+{
+case 1:
+enter();
+break;
+case 2:
+show();
+break;
+case 3:
+search();
+break;
+case 4:
+update();
+break;
+case 5:
+Delete();
+break;
+case 6:
+exit(0);
+break;
+default:
+cout<<"Invalid input"<<endl;
+break;
+}
+}
+}
